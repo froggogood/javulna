@@ -14,7 +14,7 @@ pipeline { // Defines a pipeline
 
     stage('SonarQube Analysis') {
       steps {
-        sh "mvn  verify org.sonarsource.scanner.maven:sonar-maven-plugin:4.0.4:sonar \
+        sh "mvn  verify -e org.sonarsource.scanner.maven:sonar-maven-plugin:4.0.4:sonar \
              -Dsonar.projectKey=Test \
              -Dsonar.host.url=http://192.0.2.1:9000/ \
              -Dsonar.login=sqp_e48c93acf3b9e97586c7c01b9134446feaee98a5"
