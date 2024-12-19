@@ -12,13 +12,14 @@ pipeline { // Defines a pipeline
       }
     }
 
-    stage('SonarQube Analysis') {
-      steps {
-        sh "mvn  verify -e sonar:sonar \
-             -Dsonar.projectKey=Test \
-             -Dsonar.host.url=http://192.0.2.1:9000/ \
+
+        stage('SonarQube Analysis') {
+    def mvn = tool 'Default Maven';
+    withSonarQubeEnv() {
+      sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=Test -Dsonar.projectName='Test' \
+            -Dsonar.host.url=http://192.0.2.1:9000/ \
              -Dsonar.login=sqp_e48c93acf3b9e97586c7c01b9134446feaee98a5"
-      }
+    }
     }
     stage ('Unit Test') { // Defines the 'Unit Test' stage
       steps { // Specifies the steps to be executed within this stage
