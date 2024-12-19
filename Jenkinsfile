@@ -11,11 +11,11 @@ pipeline { // Defines a pipeline
         git 'https://github.com/froggogood/javulna.git' // Retrieves the source code from the specified GitHub repository
       }
     }
+    
 
-
-        stage('SonarQube Analysis') {
+stage('SonarQube Analysis') {
     def mvn = tool 'maven';
-    withSonarQubeEnv() {
+    steps {
       sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=Test -Dsonar.projectName='Test' \
             -Dsonar.host.url=http://192.0.2.1:9000/ \
              -Dsonar.login=sqp_e48c93acf3b9e97586c7c01b9134446feaee98a5"
