@@ -14,7 +14,7 @@ pipeline { // Defines a pipeline
 
 
         stage('SonarQube Analysis') {
-    def mvn = tool 'Default Maven';
+    def mvn = tool 'maven';
     withSonarQubeEnv() {
       sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=Test -Dsonar.projectName='Test' \
             -Dsonar.host.url=http://192.0.2.1:9000/ \
