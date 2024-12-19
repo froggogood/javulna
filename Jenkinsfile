@@ -16,7 +16,7 @@ pipeline { // Defines a pipeline
       steps {
         sh "mvn  verify sonar:sonar \
              -Dsonar.projectKey=Test \
-             -Dsonar.host.url=http://localhost:9000 \
+             -Dsonar.host.url=http://0.0.0.0:9000/ \
              -Dsonar.login=sqp_e48c93acf3b9e97586c7c01b9134446feaee98a5"
       }
     }
